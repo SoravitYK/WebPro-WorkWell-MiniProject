@@ -49,7 +49,7 @@
                     Search
                     <div class="border"></div>
                     <form method="GET" action="{% url 'index' %}" class="row">
-                        <input class="col-8 form-control text-center" placeholder="Member ID" id="member_id" name="member_id">
+                        <input class="col-8 form-control text-center" placeholder="{% if member_id %}{{ member_id }}{% else %}Member ID{% endif %}" id="member_id" name="member_id">
                         <div class="col-4">
                             <button type="submit" class="btn btn-primary">Search</button>
                         </div>
