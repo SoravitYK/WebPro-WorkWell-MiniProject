@@ -15,12 +15,12 @@ class TopupLog(models.Model):
 
 class Zone(models.Model):
     zone = (
-        ('GR', 'Green Zone'),
-        ('GO', 'Gold Zone'),
-        ('PR', 'Private Zone')
+        ('GREEN', 'Green Zone'),
+        ('GOLD', 'Gold Zone'),
+        ('PRIVATE', 'Private Zone')
     )
 
-    title = models.CharField(max_length=2, choices=zone)
+    title = models.CharField(max_length=7, choices=zone)
     description = models.TextField(null=True, blank=True)
     price = models.IntegerField()
 

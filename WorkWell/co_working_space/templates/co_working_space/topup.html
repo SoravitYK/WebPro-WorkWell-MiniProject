@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid text-center">
+    <div class="row-fluid">
+            <div class="row pt-5">
+                <div class="col-8 card">
+                Add Money
+                <div class="border"></div>
+                <div class="col card-body">
+                            <div class="form-control my-2">
+                            {% if member_id %}
+                                {{ member_id }}
+                            {% else %}
+                                 Member ID
+                            {% endif %}
+                            </div>
+                            <div class="form-control my-2">
+                            {% if member %}
+                                {{ member.money }}
+                            {% else %}
+                                Money
+                            {% endif %}
+                            </div>
+                            <div class="col">
+                                <button type="col-2 button" class="btn btn-primary mx-3">+฿20</button>
+                                <button type="col-2 button" class="btn btn-primary mx-3">+฿50</button>
+                                <button type="col-2 button" class="btn btn-primary mx-3">+฿100</button>
+                                <button type="col-2 button" class="btn btn-primary mx-3">+฿500</button>
+                                <button type="col-2 button" class="btn btn-primary mx-3">+฿1000</button>
+                            </div>
+                        </div>
+                </div>
+                <div class="col-4 card">
+                    Search
+                    <div class="border"></div>
+                    <form method="GET" action="{% url 'topup' %}" class="row">
+                        <input class="col-8 form-control text-center" placeholder="Member ID" id="member_id" name="member_id">
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
+                    <div class="form-control my-2">
+                    {% if member %}
+                        {{ member.money }}
+                    {% else %}
+                        Money
+                    {% endif %}
+                    </div>
+                    <div class="row my-2 flex-fill">
+                        <select multiple class="col form-control mt-10 overflow-auto"></select>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock content %}
