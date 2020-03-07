@@ -54,28 +54,13 @@ def register(request):
 
 def topup(request):
     context={}
-    btn=None
     if request.method == "GET":
         member_id = request.GET.get("member_id")
-
-    if request.method == "POST":
-        btn = int(request.POST.get("btn"))
-        member_id = request.POST.get("member_id")
-
-    context["member_id"] = member_id
-    if member_id:
+        context["member_id"] = member_id
+        if member_id:
             try:
                 member = Member.objects.get(pk=member_id)
                 context["member"] = member
-                log = TopupLog.objects.filter(member=member)
-                context["log"] =log
-                if btn:
-                    if member.money < -40:
-                        btn -= 20
-                    member.money += btn
-                    member.save()
-                    topup = TopupLog.objects.create(member=member, amount=btn, topup_by=request.user)
-                    topup.save()
             except Member.DoesNotExist:
                 context["error"] = "Member ID doesn't exist"
     return render(request, template_name='co_working_space/topup.html', context=context)
