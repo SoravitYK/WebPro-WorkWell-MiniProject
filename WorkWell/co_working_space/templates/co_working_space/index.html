@@ -15,12 +15,16 @@
                                  Member ID
                             {% endif %}
                             </div>
-                            <select class="form-control my-2">
+                            <form action="{% url 'index' %}" method="POST" class="col">
+                            {% csrf_token %}
+                            <select name="zone" class="form-control my-2">
                                 {% for i,j in zone %}
                                     <option value="{{i}}">{{j}}</option>
                                 {% endfor %}
                             </select>
-                            <button type="button" class="btn btn-primary my-2">Check In</button>
+                            <input type="hidden" name="member_id" value="{{ member_id }}">
+                            <button type="submit" class="btn btn-primary my-2" name='check_in' value="check_in">Check In</button>
+                            </form>
                         </div>
                     </div>
                     <div class="col card">
@@ -41,7 +45,11 @@
                                 Money Left
                             {% endif %}
                             </div>
-                            <button type="button" class="btn btn-primary my-2">Check Out</button>
+                            <form action="{% url 'index' %}" method="POST" class="col">
+                            {% csrf_token %}
+                            <input type="hidden" name="member_id" value="{{ member_id }}">
+                            <button type="submit" class="btn btn-primary my-2" name="check_out">Check Out</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -62,7 +70,12 @@
                     {% endif %}
                     </div>
                     <div class="row my-2 flex-fill">
-                        <select multiple class="col form-control mt-10 overflow-auto"></select>
+                        <select multiple class="col form-control mt-10 overflow-auto">
+                        {% for i in seat %}
+                            <option>check in: {{ i.time_in }} zone: {{ i.zone }} by: {{ i.create_by }}</option>
+                        {% endfor %}
+                        </select>
+
                     </div>
                 </div>
             </div>
