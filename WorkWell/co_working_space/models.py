@@ -29,6 +29,6 @@ class SeatBooking(models.Model):
     zone = models.ForeignKey(Zone, on_delete=models.CASCADE)
     time_in = models.DateTimeField(auto_now_add=True)
     time_out = models.DateTimeField(null = True)
-    total_price = models.IntegerField()
+    total_price = models.IntegerField(null=True)
     create_date = models.DateField(auto_now_add=True)
     create_by = models.ForeignKey(User, on_delete=models.CASCADE)

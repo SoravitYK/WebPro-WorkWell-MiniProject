@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'WorkWell.wsgi.application'
 DATABASES = {
                 'default': {
                     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-                    'NAME': 'WorkWell',
+                    'NAME': 'test',
                     'USER': 'postgres',
                     'PASSWORD': '1234',
                     'HOST': 'localhost',
