@@ -11,6 +11,14 @@ from co_working_space.models import Member, SeatBooking, TopupLog, Zone
 
 
 # Create your views here.
+@login_required
+@permission_required("co_working_space.add_member")
+@permission_required("co_working_space.change_member")
+@permission_required("co_working_space.view_member")
+@permission_required("co_working_space.add_seatbooking")
+@permission_required("co_working_space.change_seatbooking")
+@permission_required("co_working_space.view_seatbooking")
+@permission_required("co_working_space.view_zone")
 def index(request):
     context = {}
     context["zone"] = Zone.zone
@@ -55,6 +63,8 @@ def index(request):
             context["error"] = "Member ID doesn't exist"
     return render(request, template_name='co_working_space/index.html', context=context)
 
+@login_required
+@permission_required("co_working_space.add_member")
 def register(request):
     context={}
     if request.method == "POST":
@@ -74,6 +84,11 @@ def register(request):
             context["error"] = "Firstname Or Lastname Is Blank"
     return render(request, template_name='co_working_space/register.html', context=context)
 
+@login_required
+@permission_required("co_working_space.change_member")
+@permission_required("co_working_space.view_member")
+@permission_required("co_working_space.add_topuplog")
+@permission_required("co_working_space.view_topuplog")
 def topup(request):
     context={}
     btn=None
@@ -118,6 +133,7 @@ def my_login(request):
             context["error"] = "Wrong Username Or Password"
     return render(request, template_name='co_working_space/login.html', context=context)
 
+@login_required
 def my_logout(request):
     logout(request)
     return redirect("login")
